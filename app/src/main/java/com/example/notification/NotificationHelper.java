@@ -16,11 +16,11 @@ import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationHelper  extends MainActivity {
 
-    static void sendNotification(String title, String message, String CHANNEL_ID, int obrazek, MainActivity Obiekt){
+    static void sendNotification(String title, String message, String CHANNEL_NAME, String CHANNEL_ID, int obrazek, MainActivity Obiekt){
         Bitmap bitmap;
         bitmap = BitmapFactory.decodeResource(Obiekt.getResources(), obrazek);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            CharSequence name = "Kanał Powiadomień";
+            CharSequence name = CHANNEL_NAME;
             String description = "Opis Kanału Powiadomień";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
