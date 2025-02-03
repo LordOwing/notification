@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
         fourth = findViewById(R.id.fourth_button);
         fourth.setOnClickListener( v -> {
-            NotificationHelper.sendNotification("Tytuł", "Zawartość", CHANNEL_ID,R.drawable.banan, this);
+            NotificationHelper.sendNotification("Tytuł", "Zawartość", "Nowy kanał",CHANNEL_ID,R.drawable.banan, this);
         });
     }
 
