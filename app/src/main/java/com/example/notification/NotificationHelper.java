@@ -15,8 +15,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationHelper  extends MainActivity {
+    static int NOTIFICATION_ID = 0;
+    static void sendNotification(String title, String message, String CHANNEL_NAME, String CHANNEL_ID, int obrazek, MainActivity Obiekt, int style){
 
-    static void sendNotification(String title, String message, String CHANNEL_NAME, String CHANNEL_ID, int obrazek, MainActivity Obiekt){
+
         Bitmap bitmap;
         bitmap = BitmapFactory.decodeResource(Obiekt.getResources(), obrazek);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
@@ -44,15 +46,23 @@ public class NotificationHelper  extends MainActivity {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Obiekt, CHANNEL_ID)
                 .setSmallIcon(R.drawable.banan)
-                .setContentTitle(title)
+
                 .setContentText(message)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
-                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap))
+
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
+        switch (style){
+            case 1:
+                builder
+                        .setContentTitle(title + NOTIFICATION_ID)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
+
+        }
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(Obiekt);
-        notificationManager.notify(1, builder.build());
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+        NOTIFICATION_ID++;
     }
 
 
